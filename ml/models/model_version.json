@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1-dummy",
+  "modelFile": "mobilenet_dummy.tflite",
+  "numClasses": 26,
+  "inputShape": [
+    224,
+    224,
+    3
+  ],
+  "pixelRange": "0-255",
+  "note": "Random-weight dummy model for integration testing only."
+}

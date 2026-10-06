@@ -1,0 +1,106 @@
+# .github/workflows/deploy.yml
+# ─────────────────────────────────────────────────────────────────
+# Runs on merge to main.
+# Builds 3 Docker images, pushes to ECR, updates ECS task definitions,
+# deploys to ECS Fargate, and waits for stability.
+#
+# Prerequisites (Phase 7 deployment guide covers setup):
+#   - OIDC trust between GitHub Actions and AWS IAM role
+#   - ECR repos: cropdoctor-web, cropdoctor-api, cropdoctor-inference
+#   - ECS cluster and services created
+#   - GitHub Secrets: AWS_ROLE_ARN, ECR_REGISTRY, ECS_CLUSTER,
+#     ECS_SERVICE_WEB, ECS_SERVICE_API, ECS_SERVICE_INFERENCE,
+#     ECS_TASK_DEF_WEB, ECS_TASK_DEF_API, ECS_TASK_DEF_INFERENCE
+# ─────────────────────────────────────────────────────────────────
+
+name: Deploy — Build, Push & Deploy to ECS
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  id-token: write    # Required for OIDC role assumption
+  contents: read
+
+env:
+  AWS_REGION: ap-south-1
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  build-and-deploy:
+    name: Build, Push & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # ── AWS credentials via OIDC ──────────────────────────────────
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # ── Login to ECR ──────────────────────────────────────────────
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # ── Build & push web image ────────────────────────────────────
+      - name: Build & push web
+        env:
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+        run: |
+          IMAGE=$ECR_REGISTRY/cropdoctor-web:$IMAGE_TAG
+          docker build \
+            --build-arg REACT_APP_API_URL=/api \
+            -t $IMAGE ./web
+          docker push $IMAGE
+          echo "WEB_IMAGE=$IMAGE" >> $GITHUB_ENV
+
+      # ── Build & push api image ────────────────────────────────────
+      - name: Build & push api
+        env:
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+        run: |
+          IMAGE=$ECR_REGISTRY/cropdoctor-api:$IMAGE_TAG
+          docker build -t $IMAGE ./api
+          docker push $IMAGE
+          echo "API_IMAGE=$IMAGE" >> $GITHUB_ENV
+
+      # ── Build & push inference image ──────────────────────────────
+      - name: Build & push inference
+        env:
+          ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+        run: |
+          IMAGE=$ECR_REGISTRY/cropdoctor-inference:$IMAGE_TAG
+          docker build -t $IMAGE ./inference-service
+          docker push $IMAGE
+          echo "INFERENCE_IMAGE=$IMAGE" >> $GITHUB_ENV
+
+      # ── Update ECS task definitions and deploy ────────────────────
+      # Phase 7: generate full task-def JSON templates and deploy
+      - name: Deploy web to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ secrets.ECS_TASK_DEF_WEB }}
+          service: ${{ secrets.ECS_SERVICE_WEB }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          wait-for-service-stability: true
+
+      - name: Deploy api to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ secrets.ECS_TASK_DEF_API }}
+          service: ${{ secrets.ECS_SERVICE_API }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          wait-for-service-stability: true
+
+      - name: Deploy inference to ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ secrets.ECS_TASK_DEF_INFERENCE }}
+          service: ${{ secrets.ECS_SERVICE_INFERENCE }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          wait-for-service-stability: true

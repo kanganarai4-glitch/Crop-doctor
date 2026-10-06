@@ -1,0 +1,568 @@
+[
+  {
+    "key": "tomato_bacterial_spot",
+    "crop": "टमाटर",
+    "name": "जीवाणु धब्बा",
+    "symptoms": "Small, water-soaked, dark spots (1–3 mm) on leaves, stems, and fruits. Spots may have yellow halos. Severely infected leaves turn yellow and drop early.",
+    "cause": "Bacteria Xanthomonas vesicatoria, X. euvesicatoria. Spread through rain splash, contaminated seeds, and transplants. Favoured by warm (24–30°C), wet, humid weather.",
+    "organic": [
+      "Remove and destroy infected plant debris; do not compost.",
+      "Apply copper-based spray (copper hydroxide or copper oxychloride) at first sign of disease.",
+      "Use certified disease-free seeds or hot-water treat seeds at 50°C for 25 minutes.",
+      "Practice crop rotation (at least 2 years away from tomato/pepper).",
+      "Avoid overhead irrigation; use drip irrigation to keep foliage dry."
+    ],
+    "chemical": [
+      "Copper hydroxide WP (e.g. Kocide 3000): preventive spray.",
+      "Mancozeb 75% WP + copper oxychloride tank mix for better control.",
+      "Streptomycin sulphate 90% SP (where legally permitted) for curative action."
+    ],
+    "dosage": "Copper hydroxide: 2–3 g per litre of water. Mancozeb: 2.5 g/L. Streptomycin: 0.5 g/L. Repeat every 7–10 days under disease pressure.",
+    "precautions": "Wear gloves, mask, and eye protection during spraying. Do not spray during flowering in strong sunlight. Observe pre-harvest intervals as per label.",
+    "prevention": "Use resistant/tolerant varieties where available. Stake and prune plants for good air circulation. Sanitise tools with 10% bleach solution between plants.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_early_blight",
+    "crop": "टमाटर",
+    "name": "अगेती झुलसा",
+    "symptoms": "Dark brown to black spots with concentric rings (target-board pattern) on older, lower leaves first. Yellow halo surrounds spots. Severe infection causes defoliation and reduced yield.",
+    "cause": "Fungus Alternaria solani. Survives in crop debris and soil. Spreads by wind and rain splash. Favoured by alternating wet and dry periods with temperatures of 24–29°C.",
+    "organic": [
+      "Remove infected lower leaves promptly and destroy (do not compost).",
+      "Apply compost tea spray to boost plant immunity.",
+      "Neem oil spray (2–3 mL/L) as a protectant.",
+      "Copper-based fungicide spray at first symptom.",
+      "Mulch beds to reduce rain-splash spread from soil."
+    ],
+    "chemical": [
+      "Mancozeb 75% WP: widely effective protectant fungicide.",
+      "Chlorothalonil 75% WP: broad-spectrum contact fungicide.",
+      "Azoxystrobin 23% SC (strobilurin): systemic, protectant + curative.",
+      "Propiconazole 25% EC: systemic curative."
+    ],
+    "dosage": "Mancozeb: 2.5 g/L. Chlorothalonil: 2 g/L. Azoxystrobin: 1 mL/L. Propiconazole: 1 mL/L. Spray every 7–10 days, rotate chemical groups to prevent resistance.",
+    "precautions": "Do not apply in high temperature or strong wind. Spray in the evening or early morning. Wear PPE (gloves, mask, goggles). Keep children and animals away from treated area for 24 hours.",
+    "prevention": "Plant certified healthy transplants. Maintain plant spacing for airflow. Avoid over-fertilising with nitrogen. Stake plants. Remove crop debris immediately after harvest.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_late_blight",
+    "crop": "टमाटर",
+    "name": "पछेती झुलसा",
+    "symptoms": "Large, greasy-looking, irregular, pale-green to brown lesions on leaves. White fuzzy sporulation on leaf undersides in humid conditions. Fruits show brown, firm lesions. Plants collapse rapidly.",
+    "cause": "Oomycete (water mould) Phytophthora infestans. Highly destructive; capable of destroying a field in days. Favoured by cool (10–25°C), wet, foggy conditions with relative humidity >90%.",
+    "organic": [
+      "Remove and bag infected plants immediately — do not compost.",
+      "Copper-based sprays (copper oxychloride, Bordeaux mixture) as protectants.",
+      "Avoid dense planting; maximise air circulation.",
+      "Avoid evening irrigation; water in the morning."
+    ],
+    "chemical": [
+      "Metalaxyl + Mancozeb (Ridomil Gold MZ): systemic + contact, the standard for late blight.",
+      "Dimethomorph 50% WP: excellent systemic activity.",
+      "Cymoxanil + Famoxadone: translaminar activity, good for curative action.",
+      "Amistar (Azoxystrobin): rotate to prevent resistance."
+    ],
+    "dosage": "Metalaxyl + Mancozeb: 2.5 g/L. Dimethomorph: 1 g/L. Apply at 5–7 day intervals during high-risk weather; reapply after rain.",
+    "precautions": "Late blight can develop resistance to metalaxyl — rotate chemical classes. Avoid spraying in rain. Observe pre-harvest interval (PHI) strictly.",
+    "prevention": "Use resistant varieties (e.g. Sardar, Kashi Amrit). Avoid late-season plantings during the monsoon if possible. Monitor weather forecasts (late blight models available).",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_leaf_mold",
+    "crop": "टमाटर",
+    "name": "Leaf Mold",
+    "symptoms": "Pale yellowish-green spots on upper leaf surface. Olive-green to brown velvety mould on the underside. Leaves curl upward and may dry out. Most common in greenhouses.",
+    "cause": "Fungus Passalora fulva (formerly Cladosporium fulvum). Spread by wind-dispersed spores. Thrives in high humidity (>85%) and moderate temperatures (20–25°C).",
+    "organic": [
+      "Increase ventilation in greenhouses; open vents to reduce humidity.",
+      "Remove and destroy infected leaves.",
+      "Neem oil spray (3 mL/L) for mild infections.",
+      "Apply Trichoderma-based biocontrol agents as drench and foliar spray."
+    ],
+    "chemical": [
+      "Chlorothalonil 75% WP: reliable contact fungicide.",
+      "Mancozeb 75% WP: effective protectant.",
+      "Difenoconazole 25% EC: systemic curative."
+    ],
+    "dosage": "Chlorothalonil: 2 g/L. Mancozeb: 2.5 g/L. Difenoconazole: 0.5 mL/L. Apply every 10–14 days.",
+    "precautions": "Avoid excessive application of nitrogen fertiliser. Wear PPE when spraying.",
+    "prevention": "Select resistant varieties. Reduce humidity by spacing plants and improving airflow. Avoid wetting foliage.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_septoria_leaf_spot",
+    "crop": "टमाटर",
+    "name": "Septoria Leaf Spot",
+    "symptoms": "Small, circular spots (1–5 mm) with dark brown margins and tan to grey centres containing small black dots (pycnidia). Starts on lower leaves; causes severe defoliation.",
+    "cause": "Fungus Septoria lycopersici. Survives in infected debris. Spreads by rain splash and water. Favoured by warm (20–25°C), wet weather.",
+    "organic": [
+      "Remove infected lower leaves immediately.",
+      "Avoid overhead irrigation.",
+      "Apply copper-based fungicide spray at first symptom.",
+      "Mulch around plants to prevent soil splash."
+    ],
+    "chemical": [
+      "Mancozeb 75% WP: first-line protectant spray.",
+      "Chlorothalonil 75% WP: effective contact fungicide.",
+      "Azoxystrobin + Chlorothalonil tank mix: protectant + systemic."
+    ],
+    "dosage": "Mancozeb: 2.5 g/L. Chlorothalonil: 2 g/L. Begin spraying at first sign; repeat every 7–10 days.",
+    "precautions": "Rotate fungicide groups. Wear PPE. Keep spray off fruit near harvest.",
+    "prevention": "Rotate tomatoes with non-solanaceous crops for ≥2 years. Use disease-free transplants. Remove all crop debris after harvest.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_spider_mites",
+    "crop": "टमाटर",
+    "name": "Spider Mites (Two-spotted)",
+    "symptoms": "Fine stippling (tiny pale dots) on upper leaf surface caused by mite feeding. Fine webbing visible on undersides in heavy infestations. Leaves turn bronzed, then brown and dry.",
+    "cause": "Tetranychus urticae (two-spotted spider mite). Not a fungal disease. Favoured by hot (>28°C), dry conditions and dusty environments. Populations explode rapidly.",
+    "organic": [
+      "Spray forceful jets of water to dislodge mites from undersides.",
+      "Neem oil (3–5 mL/L with emulsifier) spray on leaf undersides.",
+      "Release predatory mites (Phytoseiulus persimilis) as biocontrol.",
+      "Garlic or chilli extract spray as repellent.",
+      "Avoid excessive nitrogen fertilising — it promotes lush growth that mites prefer."
+    ],
+    "chemical": [
+      "Abamectin 1.9% EC (Vertimec): highly effective miticide.",
+      "Spiromesifen 22.9% SC (Oberon): translaminar, targets eggs and nymphs.",
+      "Bifenazate WDG: selective acaricide, safe for beneficials.",
+      "Dicofol 18.5% EC: older option; check registration in your state."
+    ],
+    "dosage": "Abamectin: 0.5 mL/L. Spiromesifen: 1 mL/L. Rotate miticides — two-spotted mites develop resistance rapidly. Do not repeat the same class consecutively.",
+    "precautions": "Miticides are not the same as insecticides — check product. Wear full PPE. Keep treated area off-limits until spray dries.",
+    "prevention": "Avoid dusty field margins; reduce dust with cover crops. Monitor undersides of leaves weekly. Introduce natural enemies early.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_target_spot",
+    "crop": "टमाटर",
+    "name": "Target Spot",
+    "symptoms": "Brown circular spots with concentric rings on leaves, resembling a target or bullseye. Can affect leaves, stems, and fruits. Similar to early blight but caused by a different pathogen.",
+    "cause": "Fungus Corynespora cassiicola. Favoured by warm (24–32°C), humid conditions. Soil-borne; spreads by rain splash and air.",
+    "organic": [
+      "Remove infected plant material promptly.",
+      "Apply copper-based sprays preventively.",
+      "Improve drainage and air circulation.",
+      "Mulch to reduce soil splash."
+    ],
+    "chemical": [
+      "Difenoconazole 25% EC: effective systemic fungicide.",
+      "Azoxystrobin 23% SC: curative and protective.",
+      "Tebuconazole 25.9% EC: systemic option."
+    ],
+    "dosage": "Difenoconazole: 0.5 mL/L. Azoxystrobin: 1 mL/L. Spray at 10–14-day intervals.",
+    "precautions": "Resistance to azoxystrobin reported in some areas — rotate with non-strobilurin fungicides. Use PPE.",
+    "prevention": "Maintain good plant hygiene. Use well-draining soil. Remove crop debris.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_yellow_leaf_curl_virus",
+    "crop": "टमाटर",
+    "name": "Yellow Leaf Curl Virus (TYLCV)",
+    "symptoms": "Upward and inward curling of leaves with yellowing (chlorosis) of leaf margins. Plant is stunted. New growth is pale yellow. Severely affected plants produce very few fruits.",
+    "cause": "Tomato Yellow Leaf Curl Virus (TYLCV) transmitted by whitefly (Bemisia tabaci). There is NO chemical cure for the virus itself; management focuses on controlling the vector.",
+    "organic": [
+      "Install yellow sticky traps to monitor and reduce whitefly populations.",
+      "Use reflective silver mulch to deter whiteflies.",
+      "Apply neem oil (3 mL/L) spray regularly to suppress whitefly.",
+      "Remove and destroy infected plants immediately to prevent spread.",
+      "Introduce natural predators (Encarsia formosa parasitoid wasp)."
+    ],
+    "chemical": [
+      "Imidacloprid 17.8% SL: systemic insecticide against whitefly (soil drench or spray).",
+      "Thiamethoxam 25% WG: effective for whitefly control.",
+      "Spirotetramat SC: systemic, kills nymphs and adults."
+    ],
+    "dosage": "Imidacloprid soil drench: 0.5 mL/L at transplanting. Foliar: 0.3 mL/L. Avoid foliar insecticides during flowering to protect pollinators.",
+    "precautions": "Imidacloprid and thiamethoxam are neonicotinoids — avoid spraying on open flowers. Follow state regulations on neonicotinoid use.",
+    "prevention": "Use virus-resistant/tolerant varieties (e.g. Arka Rakshak, Naveen). Raise transplants under insect-proof nets. Destroy crop debris immediately after season.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_mosaic_virus",
+    "crop": "टमाटर",
+    "name": "Mosaic Virus (ToMV)",
+    "symptoms": "Light and dark green mosaic pattern on leaves. Leaves may be distorted or fern-like. Fruits may show yellow mottling. Stunted growth in severe cases.",
+    "cause": "Tomato Mosaic Virus (ToMV) / Tobacco Mosaic Virus (TMV). Transmitted mechanically via contaminated tools, hands, and infected plant material. Extremely stable — survives on surfaces for years.",
+    "organic": [
+      "There is no cure — remove and destroy infected plants.",
+      "Wash hands with soap before handling plants.",
+      "Dip tools in 10% bleach solution or 70% alcohol between plants.",
+      "Do not use tobacco products near plants (tobacco can carry TMV).",
+      "Control aphids (which can carry other mosaic viruses) with neem oil."
+    ],
+    "chemical": [
+      "No fungicide or bactericide treats viruses.",
+      "Control aphid vectors with imidacloprid (0.3 mL/L) or dimethoate."
+    ],
+    "dosage": "Dimethoate 30% EC: 1.5 mL/L for aphid control. Repeat every 10–14 days.",
+    "precautions": "Virus-infected plants should be removed in a sealed bag. Avoid physical contact between infected and healthy plants.",
+    "prevention": "Use certified virus-free seeds. Plant resistant varieties. Sanitise tools. Rogue out infected plants early.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "tomato_healthy",
+    "crop": "टमाटर",
+    "name": "स्वस्थ (कोई बीमारी नहीं)",
+    "symptoms": "No disease symptoms observed. Leaves are bright green, firm, and uniform.",
+    "cause": "N/A — plant appears healthy.",
+    "organic": [
+      "Continue good agricultural practices.",
+      "Monitor regularly for early pest/disease signs."
+    ],
+    "chemical": [],
+    "dosage": "No treatment required.",
+    "precautions": "Continue preventive measures. Maintain balanced fertilisation.",
+    "prevention": "Crop rotation, good drainage, resistant varieties, and regular scouting.",
+    "disclaimer": "⚠️ DISCLAIMER: Even healthy plants should be monitored regularly. Consult your local agriculture officer if you notice any changes.",
+    "lang": "hi"
+  },
+  {
+    "key": "potato_early_blight",
+    "crop": "आलू",
+    "name": "अगेती झुलसा",
+    "symptoms": "Dark brown target-like spots on older leaves first. Yellowing and premature defoliation. Tuber infections show dark, corky, sunken lesions.",
+    "cause": "Fungus Alternaria solani. Same pathogen as tomato early blight. Favoured by warm, alternately wet and dry conditions.",
+    "organic": [
+      "Remove and destroy infected foliage.",
+      "Copper-based sprays (copper oxychloride 2.5 g/L).",
+      "Neem cake soil amendment to improve plant vigour.",
+      "Mulch to reduce splash."
+    ],
+    "chemical": [
+      "Mancozeb 75% WP: first-line protectant.",
+      "Azoxystrobin 23% SC: systemic protection.",
+      "Chlorothalonil 75% WP: contact fungicide."
+    ],
+    "dosage": "Mancozeb: 2.5 g/L. Azoxystrobin: 1 mL/L. Begin spraying at crop emergence; repeat every 7–10 days.",
+    "precautions": "Wear PPE. Observe pre-harvest interval.",
+    "prevention": "Use certified disease-free seed tubers. Crop rotation for ≥3 years. Avoid excessive irrigation.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "potato_late_blight",
+    "crop": "आलू",
+    "name": "पछेती झुलसा",
+    "symptoms": "Large, water-soaked, pale-green to dark-brown lesions on leaves. White sporulation on leaf undersides in humid conditions. Tubers show brown, granular rot extending from the skin inward.",
+    "cause": "Phytophthora infestans — same as tomato late blight. Extremely destructive (caused the Irish Famine). Cool, humid conditions are ideal.",
+    "organic": [
+      "Destroy infected material immediately.",
+      "Bordeaux mixture (copper sulphate + lime) spray.",
+      "Hill up soil around stems to protect tubers."
+    ],
+    "chemical": [
+      "Metalaxyl + Mancozeb (Ridomil Gold MZ): gold standard for potato late blight.",
+      "Cymoxanil + Famoxadone (Equation Pro): translaminar activity.",
+      "Propamocarb hydrochloride: mobile systemic option."
+    ],
+    "dosage": "Metalaxyl + Mancozeb: 2.5 g/L. Apply from 30 days after planting; repeat every 5–7 days in high-pressure weather.",
+    "precautions": "Rotate fungicide classes — metalaxyl resistance is documented. Harvest in dry weather; avoid mechanical damage during harvesting.",
+    "prevention": "Use resistant varieties (e.g. Kufri Jyoti, Kufri Bahar). Use certified seed tubers. Avoid late planting. Plant in well-drained fields.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "potato_healthy",
+    "crop": "आलू",
+    "name": "स्वस्थ (कोई बीमारी नहीं)",
+    "symptoms": "No disease symptoms. Foliage is lush green and uniform.",
+    "cause": "N/A — plant appears healthy.",
+    "organic": [
+      "Monitor regularly. Maintain balanced NPK nutrition."
+    ],
+    "chemical": [],
+    "dosage": "No treatment required.",
+    "precautions": "Continue good field management practices.",
+    "prevention": "Use certified seed tubers. Rotate crops. Practice earthing up.",
+    "disclaimer": "⚠️ DISCLAIMER: Even healthy plants should be monitored regularly. Consult your local agriculture officer if you notice any changes.",
+    "lang": "hi"
+  },
+  {
+    "key": "rice_bacterial_leaf_blight",
+    "crop": "चावल",
+    "name": "Bacterial Leaf Blight (BLB)",
+    "symptoms": "Water-soaked lesions on leaf tips that turn yellow, then straw-coloured. Leaves wilt and dry out (kresek symptom in seedlings). Turbid, milky exudate on cutting the leaf near water.",
+    "cause": "Bacteria Xanthomonas oryzae pv. oryzae. Spreads through flood water, rain, and wind. Enters through leaf tips and wounds. Favoured by heavy rains, flooding, and excess nitrogen.",
+    "organic": [
+      "Drain flooded fields promptly.",
+      "Avoid excessive nitrogen application.",
+      "Spray copper oxychloride (2.5 g/L) preventively.",
+      "Use resistant varieties.",
+      "Remove and destroy heavily infected crop debris."
+    ],
+    "chemical": [
+      "Copper hydroxide WP: preventive spray.",
+      "Streptomycin sulphate + Tetracycline combination spray (where permitted).",
+      "Zinc sulphate foliar spray may help in zinc-deficient fields."
+    ],
+    "dosage": "Copper hydroxide: 2.5 g/L. Streptomycin: 0.5 g/L. Spray at tillering and booting stages.",
+    "precautions": "Streptomycin may not be registered in all states — check local regulations. Wear PPE.",
+    "prevention": "Use resistant varieties (e.g. IR64, Pusa Basmati 1121). Avoid transplanting during heavy rain. Balance nitrogen with potassium application.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "rice_brown_spot",
+    "crop": "चावल",
+    "name": "Brown Spot",
+    "symptoms": "Oval to circular spots with a brown border and grey-white centre on leaves, leaf sheaths, glumes, and grains (causing discolouration). Associated with nutrient-deficient and drought-stressed plants.",
+    "cause": "Fungus Bipolaris oryzae (Helminthosporium oryzae). Seed-borne and soil-borne. Spread by air. Worsened by nutrient deficiency (potassium, silicon) and drought stress.",
+    "organic": [
+      "Correct nutrient deficiencies — especially potassium and silicon.",
+      "Treat seeds with Trichoderma viride (4 g/kg seed) before sowing.",
+      "Apply organics (farmyard manure) to improve soil health.",
+      "Improve drainage."
+    ],
+    "chemical": [
+      "Mancozeb 75% WP: effective seed treatment and foliar spray.",
+      "Iprodione 25% WP: effective for glume infection control.",
+      "Propiconazole 25% EC: systemic fungicide."
+    ],
+    "dosage": "Seed treatment: Mancozeb 2.5 g/kg seed. Foliar: Mancozeb 2.5 g/L or Propiconazole 1 mL/L. Apply at tillering and boot stage.",
+    "precautions": "Address underlying nutrient deficiency for durable control. Wear PPE during spraying.",
+    "prevention": "Use balanced fertilisation. Treat seeds before sowing. Use tolerant varieties.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "rice_leaf_blast",
+    "crop": "चावल",
+    "name": "Leaf Blast",
+    "symptoms": "Diamond-shaped or spindle-shaped lesions with grey or white centres and brown to reddish-brown borders on leaves. Severe infections can cause the neck of the panicle to turn brown (neck blast).",
+    "cause": "Fungus Magnaporthe oryzae (Pyricularia oryzae). One of the most devastating rice diseases worldwide. Spreads by wind-dispersed spores. Favoured by high humidity, cool nights, and heavy dew.",
+    "organic": [
+      "Avoid excessive nitrogen application (promotes blast).",
+      "Apply silicon (silicic acid or slag) to strengthen leaf tissues.",
+      "Seed treatment with Pseudomonas fluorescens (10 g/kg seed).",
+      "Remove volunteer plants and weed grasses."
+    ],
+    "chemical": [
+      "Tricyclazole 75% WP (Beam): highly effective systemic fungicide for blast.",
+      "Isoprothiolane 40% EC (Fuji-One): systemic, translaminar.",
+      "Kasugamycin 2% SL: bactericide also effective against blast in some studies."
+    ],
+    "dosage": "Tricyclazole: 0.6 g/L. Isoprothiolane: 1.5 mL/L. Apply at first sign of disease and again at heading/boot stage. Do not exceed 2 applications per season (resistance risk).",
+    "precautions": "Tricyclazole has a long pre-harvest interval (check label). Rotate between chemical classes. Wear PPE.",
+    "prevention": "Plant blast-resistant varieties (e.g. Pusa 1121, Samba Mahsuri). Avoid late sowing. Avoid dense canopy with excess nitrogen. Monitor during cooler, humid periods.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "rice_neck_blast",
+    "crop": "चावल",
+    "name": "Neck Blast",
+    "symptoms": "Brownish-black lesion at the panicle neck (junction of panicle and top node). Infected necks break, causing the panicle to fall (white-ear symptom). Entire panicle becomes white/sterile.",
+    "cause": "Same fungus as leaf blast (Magnaporthe oryzae) but infects the neck at heading stage. Particularly devastating because it directly causes grain loss.",
+    "organic": [
+      "Time planting to avoid the neck blast-prone heading stage during high-humidity, cool-night weather.",
+      "Apply silicon fertiliser before booting.",
+      "Avoid excessive nitrogen at heading stage."
+    ],
+    "chemical": [
+      "Tricyclazole 75% WP: apply at booting (when 50% of panicles have just emerged).",
+      "Isoprothiolane 40% EC: alternative systemic option at booting.",
+      "Hexaconazole 5% EC: triazole option."
+    ],
+    "dosage": "Tricyclazole: 0.6 g/L. Isoprothiolane: 1.5 mL/L. Timing is critical — spray at early booting stage for maximum protection.",
+    "precautions": "Observe pre-harvest intervals strictly. Neck blast once present cannot be cured — prevention and early booting-stage spray are key.",
+    "prevention": "Use blast-resistant varieties. Monitor leaf blast closely — if leaf blast is present before heading, apply fungicide at booting. Balanced NPK nutrition.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "rice_healthy",
+    "crop": "चावल",
+    "name": "स्वस्थ (कोई बीमारी नहीं)",
+    "symptoms": "No disease symptoms. Leaves are vibrant green. Plant is erect and well-tillered.",
+    "cause": "N/A — plant appears healthy.",
+    "organic": [
+      "Continue balanced fertilisation. Scout regularly."
+    ],
+    "chemical": [],
+    "dosage": "No treatment required.",
+    "precautions": "Maintain preventive spray schedule during high-risk weather periods.",
+    "prevention": "Use certified seed. Crop rotation. Good water management. Use resistant varieties.",
+    "disclaimer": "⚠️ DISCLAIMER: Even healthy plants should be monitored regularly. Consult your local agriculture officer if you notice any changes.",
+    "lang": "hi"
+  },
+  {
+    "key": "maize_cercospora_leaf_spot",
+    "crop": "मक्का",
+    "name": "Cercospora Leaf Spot (Grey Leaf Spot)",
+    "symptoms": "Long, narrow, rectangular lesions (5–70 mm) with parallel sides, tan to grey colour, bounded by leaf veins. Lesions coalesce to kill large leaf areas. Most severe in humid conditions.",
+    "cause": "Fungus Cercospora zeae-maydis. Survives in infected crop debris. Spread by wind and splashing rain. Favoured by extended periods of high humidity and moderate temperatures (25–30°C).",
+    "organic": [
+      "Remove and destroy infected crop residue after harvest (plough under or burn).",
+      "Crop rotation with non-host crops for ≥1 year.",
+      "Improve plant spacing for airflow.",
+      "Use resistant hybrids."
+    ],
+    "chemical": [
+      "Propiconazole 25% EC: effective systemic triazole fungicide.",
+      "Azoxystrobin 23% SC: strobilurin, protectant + systemic.",
+      "Tebuconazole 25.9% EC: triazole, good systemic control."
+    ],
+    "dosage": "Propiconazole: 1 mL/L. Azoxystrobin: 1 mL/L. Apply at first sign of disease (V8 to tasseling stage). Repeat in 14 days if disease pressure is high.",
+    "precautions": "Rotate fungicide classes to prevent resistance. Wear PPE. Strobilurin resistance is a growing concern — avoid sole reliance on azoxystrobin.",
+    "prevention": "Plant resistant hybrids. Practise crop rotation. Avoid minimum tillage (debris management). Plant at recommended density.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "maize_common_rust",
+    "crop": "मक्का",
+    "name": "Common Rust",
+    "symptoms": "Small, oval to elongated, brick-red to brown pustules (uredia) scattered on both leaf surfaces. Pustules burst open and release cinnamon-brown powdery spores. Severe infection reduces photosynthesis.",
+    "cause": "Fungus Puccinia sorghi. Spread by wind-borne uredospores over long distances. Favoured by cool temperatures (16–23°C) and high humidity. Cannot survive on crop debris — survives on alternate hosts.",
+    "organic": [
+      "Use resistant/tolerant hybrids (most commercial hybrids have good rust resistance).",
+      "Early planting to avoid peak rust pressure.",
+      "Remove infected plants in small holdings."
+    ],
+    "chemical": [
+      "Mancozeb 75% WP: preventive contact fungicide.",
+      "Propiconazole 25% EC: effective systemic control.",
+      "Azoxystrobin + Propiconazole: combination for improved control."
+    ],
+    "dosage": "Mancozeb: 2.5 g/L. Propiconazole: 1 mL/L. Apply at first sign and repeat in 10–14 days if needed.",
+    "precautions": "Rust develops quickly — early detection is key. Wear PPE when spraying.",
+    "prevention": "Plant resistant hybrids. Early sowing. Regular field monitoring from vegetative stages onward.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "maize_northern_leaf_blight",
+    "crop": "मक्का",
+    "name": "Northern Leaf Blight (Turcicum Blight)",
+    "symptoms": "Long, elliptical, cigar-shaped greyish-green to tan lesions (5–15 cm) on leaves. Lesions have wavy margins. Dirty-grey sporulation visible on lesion surface in humid conditions. Severe losses when infection occurs before tasseling.",
+    "cause": "Fungus Exserohilum turcicum (Helminthosporium turcicum). Survives in infected debris. Spread by wind-borne conidia. Favoured by moderate temperatures (18–27°C) and prolonged leaf wetness.",
+    "organic": [
+      "Remove and destroy infected crop debris.",
+      "Crop rotation with non-host crops.",
+      "Plant resistant hybrids (HTN gene)."
+    ],
+    "chemical": [
+      "Mancozeb 75% WP: reliable protectant.",
+      "Propiconazole 25% EC: systemic triazole.",
+      "Tebuconazole 25.9% EC: effective curative option."
+    ],
+    "dosage": "Mancozeb: 2.5 g/L. Propiconazole: 1 mL/L. Apply from flag-leaf stage; repeat every 14 days in high-pressure conditions.",
+    "precautions": "Spray timely — once lesions are numerous, economic spray benefit reduces. Wear PPE.",
+    "prevention": "Use resistant hybrids (most modern hybrids carry resistance). Crop rotation. Deep ploughing to bury debris.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "maize_healthy",
+    "crop": "मक्का",
+    "name": "स्वस्थ (कोई बीमारी नहीं)",
+    "symptoms": "No disease symptoms. Leaves are vibrant green. Plant is well-developed.",
+    "cause": "N/A — plant appears healthy.",
+    "organic": [
+      "Continue regular scouting. Maintain soil health with compost."
+    ],
+    "chemical": [],
+    "dosage": "No treatment required.",
+    "precautions": "Scout from V6 stage onward for early rust/blight detection.",
+    "prevention": "Use certified hybrid seed. Proper plant density. Balanced NPK fertilisation.",
+    "disclaimer": "⚠️ DISCLAIMER: Even healthy plants should be monitored regularly. Consult your local agriculture officer if you notice any changes.",
+    "lang": "hi"
+  },
+  {
+    "key": "wheat_brown_rust",
+    "crop": "गेहूं",
+    "name": "Brown Rust (Leaf Rust)",
+    "symptoms": "Small (1–2 mm), round to oval, orange-brown urediospore pustules on upper leaf surfaces, arranged randomly. Lower leaf surface shows pale, yellow spots. Severe infection causes leaves to dry out.",
+    "cause": "Fungus Puccinia triticina (P. recondita). Wind-dispersed spores travel hundreds of kilometres. Favoured by moderate temperatures (15–22°C) and high humidity. New races emerge frequently.",
+    "organic": [
+      "Plant resistant varieties (most critical management tool).",
+      "Early planting to escape late-season rust epidemics.",
+      "Remove volunteer wheat plants that carry over inoculum."
+    ],
+    "chemical": [
+      "Propiconazole 25% EC: most widely used and effective systemic fungicide for wheat rusts.",
+      "Tebuconazole 25.9% EC: effective triazole.",
+      "Azoxystrobin + Propiconazole: combination for broad-spectrum control."
+    ],
+    "dosage": "Propiconazole: 1 mL/L. Tebuconazole: 1 mL/L. Spray at flag-leaf stage and/or at heading when disease is evident. One well-timed spray is usually sufficient.",
+    "precautions": "Triazole fungicides have an important role in brown rust control — use judiciously to delay resistance. Spray in early morning or evening. Wear PPE.",
+    "prevention": "Plant rust-resistant varieties (e.g. HD 3086, GW 322). Monitor weekly from tillering. Timely fungicide application at disease onset.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "wheat_yellow_rust",
+    "crop": "गेहूं",
+    "name": "Yellow Rust (Stripe Rust)",
+    "symptoms": "Bright yellow urediospore pustules arranged in distinctive stripe (line) patterns along leaf veins. Pustules are powdery and yellow. Severe infection causes entire field to appear yellow-orange.",
+    "cause": "Fungus Puccinia striiformis. Favoured by cool temperatures (10–15°C) and high humidity or dew. New virulent races (e.g. warrior race) have emerged globally and overcome many resistant varieties.",
+    "organic": [
+      "Plant the most up-to-date resistant varieties (check current ICAR/IIWBR recommendations annually).",
+      "Early sowing to reach heading before peak yellow rust season.",
+      "Monitor variety resistance every season — new rust races appear regularly."
+    ],
+    "chemical": [
+      "Propiconazole 25% EC: highly effective; apply at first sign of disease.",
+      "Tebuconazole 250 EC: effective triazole.",
+      "Triadimefon 25% WP: older but effective triazole."
+    ],
+    "dosage": "Propiconazole: 1 mL/L. Tebuconazole: 1 mL/L. One spray at early infection (before flag leaf is completely covered) is often sufficient. Repeat in 14 days if disease continues.",
+    "precautions": "Yellow rust can spread extremely rapidly — inspect fields at least twice weekly during the cool season. Do not delay spraying once disease is confirmed.",
+    "prevention": "Grow varieties with current resistance (verify with your state's agriculture department each season). Avoid late planting. Destroy volunteer wheat and infected stubble.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "wheat_septoria",
+    "crop": "गेहूं",
+    "name": "Septoria Tritici Blotch",
+    "symptoms": "Pale-yellow to brown, irregular blotches on leaves with tiny black pycnidia (fruiting bodies) inside the lesion. Lesions merge; severe infection causes large dead areas on lower leaves. Mainly affects lower canopy in wet seasons.",
+    "cause": "Fungus Zymoseptoria tritici (Mycosphaerella graminicola). Spreads by rain-splash (asexual) and wind-borne ascospores (sexual). Favoured by wet, cool weather (15–20°C) and high-rainfall regions.",
+    "organic": [
+      "Remove infected lower leaves during crop season.",
+      "Crop rotation (1–2 years away from wheat).",
+      "Avoid dense sowing.",
+      "Plant partially resistant varieties."
+    ],
+    "chemical": [
+      "Epoxiconazole 125 g/L SC: effective systemic triazole.",
+      "Propiconazole 25% EC: well-proven option.",
+      "Mancozeb 75% WP + triazole tank mix: broadens spectrum."
+    ],
+    "dosage": "Propiconazole: 1 mL/L. Epoxiconazole: 1.25 mL/L. Apply at flag-leaf stage (GS 39–45) for maximum economic benefit.",
+    "precautions": "Septoria tritici resistance to triazoles is increasing globally — rotate to multisite fungicides (mancozeb, chlorothalonil). Wear PPE.",
+    "prevention": "Use partially resistant varieties. Crop rotation. Avoid high nitrogen that promotes dense canopy. Deep ploughing to bury infected stubble.",
+    "disclaimer": "⚠️ DISCLAIMER: Follow product label instructions exactly. Consult your local agriculture officer for serious cases or before first use of any chemical.",
+    "lang": "hi"
+  },
+  {
+    "key": "wheat_healthy",
+    "crop": "गेहूं",
+    "name": "स्वस्थ (कोई बीमारी नहीं)",
+    "symptoms": "No disease symptoms. Leaves are deep green, erect. Plant is well-tillered.",
+    "cause": "N/A — plant appears healthy.",
+    "organic": [
+      "Scout weekly. Apply preventive fungicide spray at flag-leaf emergence in high-risk seasons."
+    ],
+    "chemical": [],
+    "dosage": "No treatment required.",
+    "precautions": "Monitor closely during cool, wet weather for rust and septoria onset.",
+    "prevention": "Certified seed. Resistant varieties. Balanced fertilisation. Timely sowing.",
+    "disclaimer": "⚠️ DISCLAIMER: Even healthy plants should be monitored regularly. Consult your local agriculture officer if you notice any changes.",
+    "lang": "hi"
+  }
+]

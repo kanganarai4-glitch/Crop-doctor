@@ -1,0 +1,98 @@
+openapi: 3.0.3
+info:
+  title: CropDoctor API
+  description: Backend API for CropDoctor Plant Disease Diagnosis PWA
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: API status ok
+  /api/auth/guest:
+    post:
+      summary: Issue guest JWT
+      responses:
+        '200':
+          description: Guest JWT token returned
+  /api/auth/otp:
+    post:
+      summary: Request OTP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+      responses:
+        '200':
+          description: OTP sent
+  /api/auth/verify:
+    post:
+      summary: Verify OTP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone:
+                  type: string
+                otp:
+                  type: string
+      responses:
+        '200':
+          description: Verified token returned
+  /api/scans/analyze:
+    post:
+      summary: Analyze leaf image
+      responses:
+        '200':
+          description: Diagnosis result
+  /api/scans:
+    get:
+      summary: Get user scan history
+      responses:
+        '200':
+          description: List of scans
+  /api/sync:
+    post:
+      summary: Sync offline scans
+      responses:
+        '200':
+          description: Synced result
+  /api/disease/{key}:
+    get:
+      summary: Get disease treatment info
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Disease details
+  /api/feedback:
+    post:
+      summary: Submit user feedback
+      responses:
+        '200':
+          description: Feedback recorded
+  /api/model/latest:
+    get:
+      summary: Get latest TFLite model info
+      responses:
+        '200':
+          description: Model details
+  /api/stats:
+    get:
+      summary: Get platform stats
+      responses:
+        '200':
+          description: Stats summary

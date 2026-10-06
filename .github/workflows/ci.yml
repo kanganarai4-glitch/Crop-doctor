@@ -1,0 +1,134 @@
+# .github/workflows/ci.yml
+# ─────────────────────────────────────────────────────────────────
+# Runs on every Pull Request to main.
+# Jobs: lint + unit tests for api, inference-service, and web.
+# Full implementation added in Phase 7.
+# ─────────────────────────────────────────────────────────────────
+
+name: CI — Lint & Test
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]   # also run on direct pushes (should be rare)
+
+env:
+  NODE_VERSION: "20"
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  # ── Node/Express API ────────────────────────────────────────────
+  api-test:
+    name: API — Lint & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+
+    services:
+      mongo:
+        image: mongo:7.0
+        ports: ["27017:27017"]
+        options: >-
+          --health-cmd "mongosh --quiet --eval \"db.adminCommand('ping')\""
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      MONGO_URI: mongodb://localhost:27017/cropdoctor_test
+      JWT_SECRET: ci-test-secret-do-not-use-in-production
+      INFERENCE_SERVICE_URL: http://localhost:8000
+      AWS_REGION: ap-south-1
+      # AWS creds not needed for unit tests (mocked)
+      NODE_ENV: test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+  # ── FastAPI Inference Service ───────────────────────────────────
+  inference-test:
+    name: Inference — Lint & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: inference-service
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: inference-service/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt pytest ruff
+
+      - name: Lint (ruff)
+        run: ruff check app/
+
+      - name: Generate dummy model for tests
+        run: |
+          pip install tensorflow-cpu pillow numpy
+          python ../ml/generate_dummy_models.py
+
+      - name: Run tests
+        run: |
+          export MODEL_DIR=../ml/models
+          export LABELS_PATH=../ml/labels.json
+          export MODEL_VERSION=0.0.1-dummy
+          pytest tests/ -v
+
+  # ── React PWA ───────────────────────────────────────────────────
+  web-test:
+    name: Web — Lint & Test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+
+    env:
+      REACT_APP_API_URL: http://localhost:3001/api
+      CI: true
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build (smoke test)
+        run: npm run build

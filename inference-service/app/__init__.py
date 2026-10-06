@@ -1,0 +1,2 @@
+# inference-service/app/__init__.py
+# Makes `app` a Python package.

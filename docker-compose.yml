@@ -1,0 +1,130 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# CropDoctor — docker-compose.yml
+# Local development stack: web + api + inference + mongo
+#
+# Usage:
+#   1. cp .env.example .env   (fill in real values)
+#   2. python ml/generate_dummy_models.py   (first time only)
+#   3. docker-compose up --build
+#
+# Services:
+#   web        → http://localhost:3000
+#   api        → http://localhost:3001  (docs: http://localhost:3001/docs)
+#   inference  → http://localhost:8000  (internal; exposed for dev convenience)
+#   mongo      → localhost:27017
+# ─────────────────────────────────────────────────────────────────────────────
+
+version: "3.9"
+
+x-common-env: &common-env
+  NODE_ENV: development
+
+services:
+  # ── MongoDB ──────────────────────────────────────────────────────
+  mongo:
+    image: mongo:7.0
+    container_name: cropdoctor-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: cropdoctor
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── ML Inference Service (FastAPI) ───────────────────────────────
+  inference:
+    build:
+      context: ./inference-service
+      dockerfile: Dockerfile
+    container_name: cropdoctor-inference
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_DIR: /app/models
+      LABELS_PATH: /app/labels.json
+      MODEL_VERSION: ${MODEL_VERSION:-0.0.1-dummy}
+      MAX_IMAGE_SIZE_MB: ${MAX_IMAGE_SIZE_MB:-10}
+      LOW_CONFIDENCE_THRESHOLD: ${LOW_CONFIDENCE_THRESHOLD:-0.60}
+    volumes:
+      # Mount ml/models so we can swap models without rebuild
+      - ./ml/models:/app/models:ro
+      - ./ml/labels.json:/app/labels.json:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 3
+
+  # ── Node/Express API ─────────────────────────────────────────────
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: cropdoctor-api
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    depends_on:
+      mongo:
+        condition: service_healthy
+      inference:
+        condition: service_healthy
+    environment:
+      <<: *common-env
+      PORT: 3001
+      MONGO_URI: mongodb://mongo:27017/cropdoctor
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRY: ${JWT_EXPIRY:-30d}
+      INFERENCE_SERVICE_URL: http://inference:8000
+      AWS_REGION: ${AWS_REGION:-ap-south-1}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      S3_BUCKET: ${S3_BUCKET}
+      S3_PREFIX: ${S3_PREFIX:-scans}
+      LOW_CONFIDENCE_THRESHOLD: ${LOW_CONFIDENCE_THRESHOLD:-0.60}
+      BHASHINI_USER_ID: ${BHASHINI_USER_ID}
+      BHASHINI_API_KEY: ${BHASHINI_API_KEY}
+      BHASHINI_PIPELINE_URL: ${BHASHINI_PIPELINE_URL}
+      BHASHINI_COMPUTE_URL: ${BHASHINI_COMPUTE_URL}
+      TFLITE_MODEL_VERSION: ${MODEL_VERSION:-0.0.1-dummy}
+      TFLITE_MODEL_S3_URL: ${TFLITE_MODEL_S3_URL}
+      SUPPORTED_LANGUAGES: ${SUPPORTED_LANGUAGES:-en,hi,mr,ta,te,bn,kn}
+    volumes:
+      # In dev: mount src for hot-reload (requires nodemon in CMD)
+      - ./api/src:/app/src:ro
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:3001/health', r => { process.exit(r.statusCode === 200 ? 0 : 1) })"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+  # ── React PWA (dev server) ───────────────────────────────────────
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        REACT_APP_API_URL: http://localhost:3001/api
+    container_name: cropdoctor-web
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  mongo_data:
+    driver: local
