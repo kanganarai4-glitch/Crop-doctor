@@ -2,209 +2,179 @@
 
 > **"A doctor in every farmer's pocket — it speaks their language, works without internet, and shows its reasoning."**
 >
-> HSA-94: Plant Disease Diagnosis | Hackathon Project
+> **Live Demo (Vercel)**: [https://temporary-turbo-cello-fo1iquv.vercel.app](https://temporary-turbo-cello-fo1iquv.vercel.app)
 
 ---
 
-## Overview
+## 📸 Overview
 
-CropDoctor is an offline-first AI-powered plant disease diagnosis Progressive Web App (PWA) for Indian farmers.
+**CropDoctor** is an offline-first, AI-powered plant disease diagnosis Progressive Web App (PWA) tailored for Indian farmers. Designed with a high-contrast dark glassmorphic interface for outdoors and high sunlight visibility, it works seamlessly both on-device (offline) and cloud-connected (online).
 
-A farmer photographs a diseased leaf → within seconds the app shows:
-- The **crop and disease name** in the farmer's local language
-- A **confidence score** with a visual bar
-- Top-3 alternative diagnoses
-- **Grad-CAM heatmap** (online only) showing *where* the model is looking
-- Full **treatment advice** — organic + chemical, dosage, precautions, prevention
-- **Voice playback** (Bhashini TTS) in the farmer's language
-- Works **completely offline** with on-device MobileNetV3 inference
+When a farmer takes or uploads a picture of a diseased leaf, CropDoctor provides:
+- **Crop & Disease Identification**: Instant diagnosis across 26 plant disease classes.
+- **On-Device Offline Diagnosis**: Instant local inference via MobileNetV3 TFLite in a Web Worker (no internet needed).
+- **Grad-CAM Visual Heatmaps**: Cloud explainability (FastAPI + EfficientNetB0) highlighting exact leaf lesion regions.
+- **Comprehensive Treatment**: Organic remedies, chemical treatments, exact dosage instructions, and preventative measures.
+- **Multilingual Support**: Available in 7 Indian languages (**Hindi, Marathi, Tamil, Telugu, Bengali, Kannada, English**) with text-to-speech voice playback.
+- **Auto-Sync Engine**: Scans recorded offline automatically sync with MongoDB when internet connectivity is restored.
 
 ---
 
-## Repository Structure
+## 🌟 Key Features
+
+| Feature | Description |
+| :--- | :--- |
+| ⚡ **Offline-First PWA** | Integrated Service Worker + IndexedDB. Complete scanning function works standard on-device when network is offline. |
+| 🎨 **High-Contrast Glassmorphism UI** | Modern dark theme (`#08120b` canvas) with high-contrast text and glowing badges built for field usability. |
+| 🔍 **Visual Explainability (Grad-CAM)** | Superimposes heatmaps over leaf photos to show farmers *why* a diagnosis was made. |
+| 🗣️ **Multilingual & Audio-First** | Native Web Speech API synthesis + localized JSON strings across 7 regional languages. |
+| 📊 **Scan History & Feedback** | Historical diagnoses tracking with user feedback capability for continuous model improvement. |
+| 🚀 **Vercel CDN Ready** | Pre-configured `vercel.json` for static PWA routing and Node API serverless functions. |
+
+---
+
+## 🏗️ Architecture & Tech Stack
 
 ```
-cropdoctor/
-├── ml/                          # ML training and conversion
-│   ├── labels.json              # ← Single source of truth for all 26 classes
-│   ├── PREPROCESSING_SPEC.md    # ← Normative preprocessing spec
-│   ├── generate_dummy_models.py # ← Run this first (no GPU needed)
-│   ├── train_efficientnet.py
-│   ├── train_mobilenet.py
-│   ├── evaluate.py
-│   ├── convert_tflite.py
-│   └── tests/
-│       └── test_preprocessing_parity.py
-│
-├── inference-service/           # FastAPI (EfficientNetB0 + Grad-CAM)
-│   ├── app/
-│   │   ├── main.py
-│   │   └── gradcam.py
-│   ├── requirements.txt
-│   └── Dockerfile
-│
-├── api/                         # Node/Express backend
-│   ├── src/
-│   │   ├── index.js
-│   │   ├── app.js
-│   │   ├── db.js
-│   │   ├── middleware/
-│   │   └── routes/
-│   ├── package.json
-│   └── Dockerfile
-│
-├── web/                         # React PWA
+                                  ┌────────────────────────┐
+                                  │      React 18 PWA      │
+                                  │ (Web Worker + TFLite) │
+                                  └───────────┬────────────┘
+                                              │
+                                   HTTP / REST API / Sync
+                                              │
+                                              ▼
+                                  ┌────────────────────────┐
+                                  │   Node.js / Express    │
+                                  │      (Port 3001)       │
+                                  └───────────┬────────────┘
+                                              │
+                         ┌────────────────────┴────────────────────┐
+                         ▼                                         ▼
+            ┌────────────────────────┐                ┌────────────────────────┐
+            │   FastAPI Inference    │                │     MongoDB Database    │
+            │  (EfficientNet + CAM)  │                │    (Scans & Auth DB)   │
+            │      (Port 8000)       │                └────────────────────────┘
+            └────────────────────────┘
+```
+
+### Layer Details
+
+- **Frontend (`web/`)**: React 18, `@tensorflow/tfjs-tflite`, Lucide Icons, Vanilla CSS Glassmorphic System, PWA Service Worker.
+- **Backend API (`api/`)**: Node.js, Express, Mongoose, JWT Guest/Farmer Auth, S3 Image Handler, Translation Router.
+- **Inference Service (`inference-service/`)**: Python 3.11, FastAPI, TensorFlow/Keras, OpenCV Grad-CAM generator, Uvicorn.
+- **Machine Learning (`ml/`)**: MobileNetV3 Small (TFLite int8 quant, ~2.8MB) & EfficientNetB0 (Keras FP32).
+
+---
+
+## 📁 Repository Structure
+
+```
+Crop Disease Diagnosis/
+├── web/                         # React 18 PWA Frontend
 │   ├── public/
-│   │   ├── index.html
-│   │   ├── manifest.json        # ← PWA manifest
-│   │   ├── sw.js                # ← Service Worker
-│   │   └── models/              # ← TFLite model for offline inference
+│   │   ├── models/              # MobileNetV3 TFLite web model
+│   │   └── manifest.json        # PWA Web App Manifest
 │   ├── src/
-│   │   ├── index.js
-│   │   ├── index.css            # ← Design system
-│   │   └── App.jsx
-│   ├── package.json
-│   └── Dockerfile
+│   │   ├── components/          # Camera, Scan, History, Disease Catalog
+│   │   ├── offline/             # IndexedDB & Sync Manager
+│   │   ├── index.css            # High-Contrast Glassmorphism Theme
+│   │   └── App.jsx              # Main PWA Router
+│   └── package.json
+│
+├── api/                         # Express REST API
+│   ├── src/
+│   │   ├── routes/              # Auth, Scans, Diseases, Sync, Feedback
+│   │   ├── middleware/          # Guest & JWT Bearer Auth
+│   │   ├── db.js                # Mongo Connection & Memory Fallback
+│   │   └── app.js               # Express application
+│   └── package.json
+│
+├── inference-service/           # FastAPI Cloud Model + Grad-CAM
+│   ├── app/
+│   │   ├── main.py              # /predict and /gradcam endpoints
+│   │   └── gradcam.py           # Layer visualizer
+│   └── requirements.txt
+│
+├── ml/                          # ML Pipelines & Quantization
+│   ├── labels.json              # Class index dictionary (26 classes)
+│   ├── train_mobilenet.py       # MobileNetV3 training script
+│   ├── train_efficientnet.py    # EfficientNetB0 training script
+│   └── convert_tflite.py        # TFLite int8 conversion tool
 │
 ├── content/
-│   ├── diseases.en.json         # ← English disease treatment content (seed)
+│   ├── diseases.en.json         # Master English treatment dataset
 │   └── scripts/
-│       └── translate_content.js # ← Bhashini translation pipeline (Phase 4)
+│       └── translate_content.js # Multilingual translation pipeline
 │
-├── .github/workflows/
-│   ├── ci.yml                   # ← PR: lint + test
-│   └── deploy.yml               # ← main merge: build + push + ECS deploy
-│
-├── docker-compose.yml
-├── .env.example
+├── docker-compose.yml           # Complete containerization spec
+├── vercel.json                  # Vercel deployment spec
 └── README.md
 ```
 
 ---
 
-## Crops & Diseases
+## 🌾 Supported Crops & 26 Disease Classes
 
-**26 classes** across 5 crops (defined in `ml/labels.json`):
+Defined in `ml/labels.json`:
 
-| Crop   | Classes |
-|--------|---------|
-| Tomato | Bacterial Spot, Early Blight, Late Blight, Leaf Mold, Septoria Leaf Spot, Spider Mites, Target Spot, Yellow Leaf Curl Virus, Mosaic Virus, Healthy |
-| Potato | Early Blight, Late Blight, Healthy |
-| Rice   | Bacterial Leaf Blight, Brown Spot, Leaf Blast, Neck Blast, Healthy |
-| Maize  | Cercospora Leaf Spot, Common Rust, Northern Leaf Blight, Healthy |
-| Wheat  | Brown Rust, Yellow Rust, Septoria, Healthy |
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React PWA (Create React App) |
-| On-device ML | MobileNetV3Small → TFLite (int8) via `@tensorflow/tfjs-tflite` |
-| Server ML | EfficientNetB0 (FastAPI) |
-| Explainability | Grad-CAM (last conv layer of EfficientNet) |
-| Backend | Node.js + Express |
-| Database | MongoDB (Mongoose) |
-| Storage | AWS S3 (pre-signed URLs) |
-| Translation + TTS | Bhashini API |
-| Containers | Docker + docker-compose |
-| CI/CD | GitHub Actions |
-| Deployment | AWS ECS Fargate + ECR |
+| Crop | Supported Diagnoses |
+| :--- | :--- |
+| 🍅 **Tomato** | Bacterial Spot, Early Blight, Late Blight, Leaf Mold, Septoria Leaf Spot, Spider Mites, Target Spot, Yellow Leaf Curl Virus, Mosaic Virus, Healthy |
+| 🥔 **Potato** | Early Blight, Late Blight, Healthy |
+| 🌾 **Rice** | Bacterial Leaf Blight, Brown Spot, Leaf Blast, Neck Blast, Healthy |
+| 🌽 **Maize** | Cercospora Leaf Spot, Common Rust, Northern Leaf Blight, Healthy |
+| 🌾 **Wheat** | Brown Rust, Yellow Rust, Septoria Leaf Spot, Healthy |
 
 ---
 
-## Phase Build Status
+## 🌐 Supported Languages
 
-| Phase | Status | Description |
-|-------|--------|-------------|
-| 0 | ✅ Done | Skeleton, docker-compose, dummy models, labels |
-| 1 | 🔲 Pending | TFLite browser smoke test |
-| 2 | 🔲 Pending | ML training + FastAPI /predict /gradcam /health |
-| 3 | 🔲 Pending | MongoDB schemas, seed, Node API all routes |
-| 4 | 🔲 Pending | Bhashini translation + TTS pipeline |
-| 5 | 🔲 Pending | React PWA all screens |
-| 6 | 🔲 Pending | Offline: Service Worker, IndexedDB, sync |
-| 7 | 🔲 Pending | Dockerfiles, CI/CD, ECS deployment |
-| 8 | 🔲 Pending | Tests, Lighthouse fixes, demo script |
+CropDoctor supports 7 Indian languages with localized disease names, symptom descriptions, organic/chemical treatments, and voice playback:
+
+- 🇬🇧 **English (`en`)**
+- 🇮🇳 **Hindi (`hi` - हिन्दी)**
+- 🇮🇳 **Marathi (`mr` - मराठी)**
+- 🇮🇳 **Tamil (`ta` - தமிழ்)**
+- 🇮🇳 **Telugu (`te` - తెలుగు)**
+- 🇮🇳 **Bengali (`bn` - বাংলা)**
+- 🇮🇳 **Kannada (`kn` - ಕನ್ನಡ)**
 
 ---
 
-## Quick Start (Phase 0)
+## ⚡ Quick Start & Local Setup
 
 ### Prerequisites
-- Python 3.11+
 - Node.js 20+
-- Docker Desktop
+- Python 3.11+
+- Git
 
-### 1. Clone and setup env
+### 1. Clone the Repository
 ```bash
-git clone <your-repo-url> cropdoctor
-cd cropdoctor
-cp .env.example .env
-# Edit .env with your secrets
+git clone https://github.com/your-username/crop-disease-diagnosis.git
+cd crop-disease-diagnosis
 ```
 
-### 2. Generate dummy models (no GPU needed)
-```bash
-pip install tensorflow-cpu pillow numpy
-python ml/generate_dummy_models.py
-```
-This creates:
-- `ml/models/efficientnet_dummy.keras`
-- `ml/models/mobilenet_dummy.keras`
-- `ml/models/mobilenet_dummy.tflite`  ← used by FastAPI
-- `ml/models/mobilenet_dummy_int8.tflite`
-- `web/public/models/mobilenet_dummy.tflite`  ← used by PWA
+### 2. Launch Local Servers
 
-### 3. Run with Docker Compose
-```bash
-docker-compose up --build
-```
+#### Option A: Running Manually (Recommended for Quick Testing)
 
-| Service | URL |
-|---------|-----|
-| React PWA | http://localhost:3000 |
-| Node API | http://localhost:3001 |
-| API Docs | http://localhost:3001/docs |
-| FastAPI | http://localhost:8000 |
-| FastAPI Docs | http://localhost:8000/docs |
-
-### 4. Verify Phase 0 health
-```bash
-curl http://localhost:3001/health
-# {"status":"ok","service":"cropdoctor-api"}
-
-curl http://localhost:8000/health
-# {"status":"ok","modelLoaded":true,...}
-
-curl -X POST http://localhost:3001/api/auth/guest
-# {"token":"...","userId":"guest_...","role":"guest"}
-```
-
----
-
-## Running Without Docker
-
-### FastAPI Inference Service
+**Start FastAPI Inference Service (Terminal 1):**
 ```bash
 cd inference-service
 pip install -r requirements.txt
-export MODEL_DIR=../ml/models
-export LABELS_PATH=../ml/labels.json
-uvicorn app.main:app --reload --port 8000
+python -m uvicorn app.main:app --port 8000
 ```
 
-### Node API
+**Start Express Node API (Terminal 2):**
 ```bash
 cd api
 npm install
-# Ensure MongoDB is running on localhost:27017
-cp ../.env.example .env  # fill in JWT_SECRET at minimum
-npm run dev
+npm start
+# Runs API server on http://localhost:3001
 ```
 
-### React PWA
+**Start React PWA (Terminal 3):**
 ```bash
 cd web
 npm install
@@ -212,178 +182,53 @@ npm start
 # Opens http://localhost:3000
 ```
 
----
-
-## ML Training (When Dataset is Available)
-
-### Datasets
-- **PlantVillage**: ~54,000 lab images across 26 disease classes
-- **PlantDoc**: ~2,500 real-field images (noisier, more realistic)
-
-### Dataset Split Strategy
-(See `ml/PREPROCESSING_SPEC.md` for rationale)
-```
-Train  : PlantVillage 80% + PlantDoc 80%
-Val    : PlantVillage 10% + PlantDoc 10%
-Test   : PlantDoc 10% ONLY  (out-of-domain — harder, more honest)
-```
-
-### Prepare dataset directory
-```
-/path/to/dataset/
-  train/
-    tomato_bacterial_spot/  img1.jpg img2.jpg ...
-    tomato_early_blight/    ...
-    ...
-  val/
-    ...
-  test/
-    ...
-```
-
-### Train EfficientNetB0 (server model)
+#### Option B: Running with Docker Compose
 ```bash
-python ml/train_efficientnet.py \
-  --data_dir /path/to/dataset \
-  --output_dir ml/models \
-  --epochs_head 10 \
-  --epochs_finetune 20
+docker-compose up --build
 ```
 
-### Train MobileNetV3Small (on-device model)
+---
+
+## ☁️ Deployment
+
+### Vercel Deployment
+This repository includes a production-ready `vercel.json` configuration for deployment to Vercel:
+
 ```bash
-python ml/train_mobilenet.py \
-  --data_dir /path/to/dataset \
-  --output_dir ml/models \
-  --epochs_head 10 \
-  --epochs_finetune 20
+npx vercel deploy --prod
 ```
 
-### Evaluate
+Live Production Link: **[https://temporary-turbo-cello-fo1iquv.vercel.app](https://temporary-turbo-cello-fo1iquv.vercel.app)**
+
+---
+
+## 🧪 Testing & Quality Assurance
+
+Run complete test suites across all modules:
+
 ```bash
-python ml/evaluate.py \
-  --model ml/models/efficientnet_final.keras \
-  --test_dir /path/to/dataset/test
-# → ml/eval_results/metrics.json
-# → ml/eval_results/confusion_matrix.png
-```
+# Test Machine Learning Preprocessing Parity
+python -m pytest ml/tests/test_preprocessing_parity.py
 
-### Convert to TFLite
-```bash
-python ml/convert_tflite.py \
-  --model ml/models/mobilenet_final.keras \
-  --val_dir /path/to/dataset/val \
-  --output_dir ml/models
-# → ml/models/mobilenet_final.tflite   (~4-6 MB)
-# → ml/models/mobilenet_final_int8.tflite  (~2-3 MB)
+# Test FastAPI Inference & Grad-CAM Endpoints
+python -m pytest inference-service/tests/test_main.py
+
+# Test Express API Endpoints
+cd api && npm test
+
+# Test React Component Rendering
+cd web && npm test
 ```
 
 ---
 
-## Preprocessing Contract
+## 🛡️ Disclaimer
 
-**CRITICAL**: All services must follow this exactly — see `ml/PREPROCESSING_SPEC.md`.
-
-| Step | Value |
-|------|-------|
-| Resize | 224 × 224 px (bilinear) |
-| Color | RGB |
-| Dtype | float32 |
-| Pixel range | **0 – 255** (NO normalisation by caller) |
-| Internal rescaling | Done inside the Keras model |
+> ⚠️ **Educational & Diagnostic Support Tool Only**  
+> Treatment recommendations provided in CropDoctor are for general guidance. Farmers should verify product dosages with local agricultural extension officers or certified agronomists before large-scale pesticide applications.
 
 ---
 
-## Supported Languages
+## 📜 License
 
-| Code | Language |
-|------|----------|
-| en | English |
-| hi | Hindi (हिन्दी) |
-| mr | Marathi (मराठी) |
-| ta | Tamil (தமிழ்) |
-| te | Telugu (తెలుగు) |
-| bn | Bengali (বাংলা) |
-| kn | Kannada (ಕನ್ನಡ) |
-
----
-
-## Environment Variables
-
-See `.env.example` for all required variables with descriptions.
-
-Key variables:
-- `JWT_SECRET` — must be set before any auth will work
-- `MONGO_URI` — MongoDB connection string
-- `AWS_*` — S3 credentials for image storage
-- `BHASHINI_*` — Bhashini API credentials for translation/TTS
-- `LOW_CONFIDENCE_THRESHOLD` — default `0.60`
-
----
-
-## API Endpoints (Phase 0 stubs, full in Phase 3)
-
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | /health | Public | API health check |
-| POST | /api/auth/guest | Public | Issue guest JWT |
-| POST | /api/auth/otp | Public | Request OTP (demo: always 123456) |
-| POST | /api/auth/verify | Public | Verify OTP, get user JWT |
-| POST | /api/scan | Bearer | Upload image, get diagnosis |
-| GET | /api/scans | Bearer | Scan history |
-| POST | /api/sync | Bearer | Bulk sync offline scans |
-| GET | /api/disease/:key | Public | Treatment info (with ?lang=hi) |
-| POST | /api/feedback | Bearer | Correct a scan prediction |
-| GET | /api/model/latest | Public | Current TFLite version + S3 URL |
-| GET | /api/stats | Bearer | Admin region/disease stats |
-| GET | /docs | Public | Swagger UI |
-
----
-
-## AWS Infrastructure (Manual Steps — Phase 7)
-
-These steps must be done manually in the AWS console before deployment:
-
-1. **ECR Repositories**: Create `cropdoctor-web`, `cropdoctor-api`, `cropdoctor-inference`
-2. **ECS Cluster**: Create `cropdoctor-cluster` (Fargate)
-3. **ECS Services**: Three services (web, api, inference)
-4. **ALB**: Application Load Balancer with:
-   - `/` → web service (port 80)
-   - `/api/*` → api service (port 3001)
-   - Inference service: internal only (not behind ALB)
-5. **ACM Certificate**: For HTTPS (required for camera + service worker on real devices)
-6. **S3 Bucket**: `cropdoctor-images` with CORS configured for the ALB domain
-7. **IAM**: GitHub OIDC provider + deployment role with ECR push + ECS deploy permissions
-
-Full step-by-step guide in Phase 7 output.
-
----
-
-## Demo Script (Airplane-Mode Demo — Phase 8)
-
-1. Open the app on a mobile device
-2. Scan a healthy leaf → shows "Healthy" with high confidence
-3. Enable airplane mode on the phone
-4. Scan a diseased leaf → app uses on-device MobileNet → shows prediction
-5. Re-enable network → app auto-syncs the offline scan with "Synced ✓" indicator
-6. Show scan history with the offline scan now updated with cloud results
-7. Tap "Listen" → plays treatment advice in the farmer's language
-
----
-
-## Disclaimer
-
-> ⚠️ **All treatment recommendations are for educational purposes only.**
-> Always follow product label instructions exactly.
-> For serious infestations or any doubt, consult your local agriculture officer.
-> Accuracy metrics from dummy/random-weight models are meaningless and should never be cited.
-
----
-
-## License
-
-MIT License — see LICENSE file.
-
-## Team
-
-Built for HSA-94: Plant Disease Diagnosis hackathon challenge.
+Distributed under the MIT License. See `LICENSE` for more details.
